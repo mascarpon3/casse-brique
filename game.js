@@ -8,13 +8,14 @@ class Game {
         this.width=this.ctx.canvas.scrollWidth;
         this.height=this.ctx.canvas.scrollHeight;
 
-        this.raquette = new Raquette(this.ctx);
-        this.balle = new Balle(this.ctx);
-
-        this.direction = 0
     }
 
     start = () => {
+        this.alive = true
+        this.raquette = new Raquette(this.ctx);
+        this.balle = new Balle(this.ctx);
+        this.direction = 0
+
         this.listenArrows()
         this.update()
     }
@@ -26,12 +27,15 @@ class Game {
         this.raquette.updatePosition()
         this.balle.updatePosition()
         this.detectCollision()
-        this.balle.updateSpeedAfterWallCollision()
+        this.alive = this.balle.updateSpeedAfterWallCollision()
 
         this.raquette.draw()
         this.balle.draw()
-
-        setTimeout(this.update, 5)
+        if (this.alive) {
+            setTimeout(this.update, 5)
+        } else {
+            this.start()
+        }
     }
 
     detectCollision(){

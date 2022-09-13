@@ -35,8 +35,13 @@ export class Balle{
         if(this.position.x - this.radius < 0 || this.position.x + this.radius > this.ctx.canvas.clientWidth){
             this.speed.x = - this.speed.x
         }
-        if(this.position.y - this.radius < 0 || this.position.y + this.radius > this.ctx.canvas.clientHeight){
+        if(this.position.y - this.radius < 0 ){
             this.speed.y = - this.speed.y
+        }
+        if (this.position.y + this.radius < this.ctx.canvas.clientHeight){
+            return true
+        } else {
+            return false
         }
     }
 

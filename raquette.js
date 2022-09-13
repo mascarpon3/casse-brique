@@ -3,7 +3,6 @@ export class Raquette {
         this.ctx = ctx
         this.gameWidth = ctx.canvas.clientWidth;
         this.gameHeight = ctx.canvas.clientHeight;
-        console.log(ctx.canvas.clientWidth)
 
         this.width = 120;
         this.height= 10; 
