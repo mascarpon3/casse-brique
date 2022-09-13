@@ -21,15 +21,27 @@ class Game {
 
     update = () => {
         this.ctx.clearRect(0, 0, this.width, this.height)
+
         this.raquette.updateDirection(this.direction)
         this.raquette.updatePosition()
+        this.balle.updatePosition()
+        this.detectCollision()
 
         this.raquette.draw()
         this.balle.draw()
 
-        setTimeout(this.update, 10)
+        setTimeout(this.update, 5)
     }
 
+    detectCollision(){
+        if (this.balle.position.y + this.balle.radius === this.raquette.position.y) {
+            var ballRatioPositioning = (
+                (this.balle.position.x - this.raquette.position.x - this.raquette.width / 2) /
+                this.raquette.width
+            )
+            this.balle.updateSpeedAfterRaquetteCollision(ballRatioPositioning)
+        }
+    }
     listenArrows = () => {
         window.addEventListener("keydown", e => {
             if (e.key === "ArrowLeft"){

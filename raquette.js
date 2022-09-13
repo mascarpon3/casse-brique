@@ -7,20 +7,23 @@ export class Raquette {
         this.borderRight = this.gameWidth - this.width
 
         this.width = 120;
-        this.height= 20; 
+        this.height= 10; 
 
         this.direction = 0;
-        this.position = (this.gameWidth - this.width) / 2;
+        this.position = {
+            "x": (this.gameWidth - this.width) / 2,
+            "y": this.gameHeight - 60,
+        }
     }
 
-    updatePosition(){
-        this.position += 4 * this.direction
+    updatePosition() {
+        this.position.x += 4 * this.direction
     }
 
     updateDirection(direction){
-        if (this.position != this.borderLeft && direction === -1) {
+        if (this.position.x != this.borderLeft && direction === -1) {
             this.direction = -1
-        } else if (this.position != this.borderRight  && direction === 1) {
+        } else if (this.position.x != this.borderRight  && direction === 1) {
             this.direction = 1
         } else {
             this.direction = 0
@@ -28,6 +31,6 @@ export class Raquette {
     }
 
     draw(){
-        this.ctx.fillRect(this.position, this.gameHeight - 60, this.width, this.height)
+        this.ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 }

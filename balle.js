@@ -5,14 +5,32 @@ export class Balle{
         this.radius = 12
 
         this.position = {
-            "x": 2 * ctx.canvas.clientHeight / 3,
-            "y": ctx.canvas.clientWidth / 2,
+            "x": Math.round(ctx.canvas.clientWidth * (1 / 2)),
+            "y": Math.round(ctx.canvas.clientHeight * (2 / 3)),
+        }
+
+        this.speed = {
+            "x": 0,
+            "y": 1,
         }
     }
 
+    updatePosition() {
+        this.position = {
+            "x": this.position.x + this.speed.x,
+            "y": this.position.y + this.speed.y,
+        }
+    }
+
+    updateSpeedAfterRaquetteCollision(ballRatioPositioning) {
+        this.speed.x = ballRatioPositioning * 5
+        this.speed.y = -this.speed.y
+    }
+
+
     draw(){
         this.ctx.beginPath();
-        this.ctx.arc(this.position.y, this.position.x, this.radius, 0, 2 * Math.PI, false);
+        this.ctx.arc(this.position.x, this.position.y, this.radius, 0, 2 * Math.PI, false);
         this.ctx.fillStyle = 'green';
         this.ctx.fill();
         this.ctx.lineWidth = 3;
