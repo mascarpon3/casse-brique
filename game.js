@@ -1,13 +1,16 @@
 import {Raquette} from "./raquette.js"
+import {Balle} from "./balle.js"
 
 class Game {
     constructor(){
-        this.canvas = document.getElementById('terrain');
-        this.ctx = this.canvas.getContext('2d'); 
-        this.width=this.canvas.scrollWidth;
-        this.height=this.canvas.scrollHeight;
+        this.ctx = document.getElementById('terrain').getContext('2d');
+
+        this.width=this.ctx.canvas.scrollWidth;
+        this.height=this.ctx.canvas.scrollHeight;
 
         this.raquette = new Raquette(this.width, this.height);
+        this.balle = new Balle(this.ctx);
+
         this.direction = 0
     }
 
@@ -20,7 +23,10 @@ class Game {
         this.ctx.clearRect(0, 0, this.width, this.height)
         this.raquette.updateDirection(this.direction)
         this.raquette.updatePosition()
+
         this.raquette.draw(this.ctx)
+        this.balle.draw()
+
         setTimeout(this.update, 10)
     }
 
