@@ -8,7 +8,7 @@ class Game {
         this.width=this.ctx.canvas.scrollWidth;
         this.height=this.ctx.canvas.scrollHeight;
 
-        this.raquette = new Raquette(this.width, this.height);
+        this.raquette = new Raquette(this.ctx);
         this.balle = new Balle(this.ctx);
 
         this.direction = 0
@@ -24,7 +24,7 @@ class Game {
         this.raquette.updateDirection(this.direction)
         this.raquette.updatePosition()
 
-        this.raquette.draw(this.ctx)
+        this.raquette.draw()
         this.balle.draw()
 
         setTimeout(this.update, 10)

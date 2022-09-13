@@ -2,11 +2,12 @@ export class Balle{
     constructor(ctx) {
         this.ctx = ctx;
 
+        this.radius = 12
+
         this.position = {
             "x": 2 * ctx.canvas.clientHeight / 3,
             "y": ctx.canvas.clientWidth / 2,
         }
-        this.radius = 12
     }
 
     draw(){
