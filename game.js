@@ -1,4 +1,4 @@
-import {Bar} from "./bar.js"
+import {Raquette} from "./raquette.js"
 
 class Game {
     constructor(){
@@ -7,7 +7,7 @@ class Game {
         this.width=this.canvas.scrollWidth;
         this.height=this.canvas.scrollHeight;
 
-        this.bar = new Bar(this.width, this.height);
+        this.raquette = new Raquette(this.width, this.height);
         this.direction = 0
     }
 
@@ -18,9 +18,9 @@ class Game {
 
     update = () => {
         this.ctx.clearRect(0, 0, this.width, this.height)
-        this.bar.updateDirection(this.direction)
-        this.bar.updatePosition()
-        this.bar.draw(this.ctx)
+        this.raquette.updateDirection(this.direction)
+        this.raquette.updatePosition()
+        this.raquette.draw(this.ctx)
         setTimeout(this.update, 10)
     }
 
