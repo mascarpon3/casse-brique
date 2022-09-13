@@ -23,8 +23,19 @@ export class Balle{
     }
 
     updateSpeedAfterRaquetteCollision(ballRatioPositioning) {
-        this.speed.x = ballRatioPositioning * 5
-        this.speed.y = -this.speed.y
+        if (Math.abs(ballRatioPositioning) < 0.6){
+            this.speed.x = ballRatioPositioning * 5
+            this.speed.y = -this.speed.y
+        }
+    }
+
+    updateSpeedAfterWallCollision() {
+        if(this.position.x - this.radius < 0 || this.position.x + this.radius > this.ctx.canvas.clientWidth){
+            this.speed.x = - this.speed.x
+        }
+        if(this.position.y - this.radius < 0 || this.position.y + this.radius > this.ctx.canvas.clientHeight){
+            this.speed.y = - this.speed.y
+        }
     }
 
 

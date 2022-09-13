@@ -26,6 +26,7 @@ class Game {
         this.raquette.updatePosition()
         this.balle.updatePosition()
         this.detectCollision()
+        this.balle.updateSpeedAfterWallCollision()
 
         this.raquette.draw()
         this.balle.draw()
