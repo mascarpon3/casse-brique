@@ -35,7 +35,7 @@ class Game {
     }
 
     detectCollision(){
-        if (this.balle.position.y + this.balle.radius === this.raquette.position.y) {
+        if (Math.abs(this.balle.position.y + this.balle.radius - this.raquette.position.y) < 2) {
             var ballRatioPositioning = (
                 (this.balle.position.x - this.raquette.position.x - this.raquette.width / 2) /
                 this.raquette.width

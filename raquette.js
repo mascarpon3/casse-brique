@@ -3,11 +3,12 @@ export class Raquette {
         this.ctx = ctx
         this.gameWidth = ctx.canvas.clientWidth;
         this.gameHeight = ctx.canvas.clientHeight;
-        this.borderLeft = 0;
-        this.borderRight = this.gameWidth - this.width
+        console.log(ctx.canvas.clientWidth)
 
         this.width = 120;
         this.height= 10; 
+        this.borderLeft = 0;
+        this.borderRight = this.gameWidth - this.width
 
         this.direction = 0;
         this.position = {
@@ -21,9 +22,9 @@ export class Raquette {
     }
 
     updateDirection(direction){
-        if (this.position.x != this.borderLeft && direction === -1) {
+        if (this.position.x >= this.borderLeft && direction === -1) {
             this.direction = -1
-        } else if (this.position.x != this.borderRight  && direction === 1) {
+        } else if (this.position.x <= this.borderRight  && direction === 1) {
             this.direction = 1
         } else {
             this.direction = 0

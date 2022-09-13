@@ -17,16 +17,18 @@ export class Balle{
 
     updatePosition() {
         this.position = {
-            "x": this.position.x + this.speed.x,
-            "y": this.position.y + this.speed.y,
+            "x": this.position.x + 3 * this.speed.x,
+            "y": this.position.y + 3 * this.speed.y,
         }
     }
 
     updateSpeedAfterRaquetteCollision(ballRatioPositioning) {
         if (Math.abs(ballRatioPositioning) < 0.6){
-            this.speed.x = ballRatioPositioning * 5
+            this.speed.x = ballRatioPositioning * 2
             this.speed.y = -this.speed.y
+            this.speed = normalizeSpeed(this.speed)
         }
+
     }
 
     updateSpeedAfterWallCollision() {
@@ -47,5 +49,13 @@ export class Balle{
         this.ctx.lineWidth = 3;
         this.ctx.strokeStyle = '#003300';
         this.ctx.stroke();    
+    }
+}
+
+const normalizeSpeed = (speed) => {
+    const norm = Math.sqrt(speed.x ** 2+ speed.y ** 2)
+    return {
+        "x": speed.x / norm,
+        "y": speed.y / norm,
     }
 }
