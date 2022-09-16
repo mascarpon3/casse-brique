@@ -7,23 +7,20 @@ class Game {
 
         this.width=this.ctx.canvas.scrollWidth;
         this.height=this.ctx.canvas.scrollHeight;
-
     }
 
     start = () => {
         this.alive = true
         this.raquette = new Raquette(this.ctx);
         this.balle = new Balle(this.ctx);
-        this.direction = 0
 
-        this.listenArrows()
         this.update()
     }
 
     update = () => {
         this.ctx.clearRect(0, 0, this.width, this.height)
 
-        this.raquette.updateDirection(this.direction)
+        this.raquette.updateDirection()
         this.raquette.updatePosition()
         this.balle.updatePosition()
         this.detectCollision()
@@ -31,6 +28,7 @@ class Game {
 
         this.raquette.draw()
         this.balle.draw()
+
         if (this.alive) {
             setTimeout(this.update, 5)
         } else {
@@ -47,22 +45,7 @@ class Game {
             this.balle.updateSpeedAfterRaquetteCollision(ballRatioPositioning)
         }
     }
-    listenArrows = () => {
-        window.addEventListener("keydown", e => {
-            if (e.key === "ArrowLeft"){
-                this.direction = -1
-            } else if (e.key === "ArrowRight") {
-                this.direction = 1
-            }
-        })
-        window.addEventListener("keyup", e => {
-            if (e.key === "ArrowLeft" || this.direction === -1) {
-                this.direction = 0
-            } else if (e.key === "ArrowRight" ||this.direction === 1) {
-                this.direction = 0
-            }
-        })
-    }
+
 }
 
 const game = new Game
