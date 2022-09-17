@@ -1,6 +1,7 @@
 import {Raquette} from "./raquette.js"
 import {Balle} from "./balle.js"
 
+
 class Game {
     constructor(){
         this.ctx = document.getElementById('terrain').getContext('2d');
