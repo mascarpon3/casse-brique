@@ -1,5 +1,5 @@
-import {Raquette} from "./raquette.js"
-import {Balle} from "./balle.js"
+import {Raquette} from "./objects/raquette.js"
+import {Balle} from "./objects/balle.js"
 
 
 class Game {
