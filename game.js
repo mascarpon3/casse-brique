@@ -24,29 +24,18 @@ class Game {
         this.raquette.updateDirection()
         this.raquette.updatePosition()
         this.balle.updatePosition()
-        this.detectCollision()
-        this.alive = this.balle.updateSpeedAfterWallCollision()
+        this.balle.updateSpeedAfterWallCollision()
+        this.balle.updateSpeedAfterRaquetteCollision(this.raquette)
 
         this.raquette.draw()
         this.balle.draw()
 
-        if (this.alive) {
+        if (this.balle.isAlive()) {
             setTimeout(this.update, 5)
         } else {
             this.start()
         }
     }
-
-    detectCollision(){
-        if (Math.abs(this.balle.position.y + this.balle.radius - this.raquette.position.y) < 2) {
-            var ballRatioPositioning = (
-                (this.balle.position.x - this.raquette.position.x - this.raquette.width / 2) /
-                this.raquette.width
-            )
-            this.balle.updateSpeedAfterRaquetteCollision(ballRatioPositioning)
-        }
-    }
-
 }
 
 
