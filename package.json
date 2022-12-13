@@ -1,0 +1,26 @@
+{
+  "name": "casse-brique",
+  "version": "1.0.0",
+  "description": "This is a little game to practice js. ",
+  "main": "game.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mascarpon3/casse-brique.git"
+  },
+  "keywords": [
+    "casse-brique",
+    "game"
+  ],
+  "author": "Charles Englebert",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mascarpon3/casse-brique/issues"
+  },
+  "homepage": "https://github.com/mascarpon3/casse-brique#readme",
+  "dependencies": {
+    "live-server": "^1.1.0"
+  }
+}
