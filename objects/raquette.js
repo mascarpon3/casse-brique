@@ -50,6 +50,7 @@ export class Raquette {
     }
 
     draw(){
+        this.ctx.fillStyle = '#70880F'
         this.ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 }
