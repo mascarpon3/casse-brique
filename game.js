@@ -13,8 +13,8 @@ class Game {
 
     start = () => {
         this.alive = true
-        this.raquette = new Raquette(this.ctx);
-        this.balle = new Balle(this.ctx);
+        this.raquette = new Raquette(this.ctx)
+        this.balle = new Balle(this.ctx)
         this.briqueWall = new BriqueWall(this.ctx)
 
         this.update()
@@ -29,6 +29,7 @@ class Game {
         this.balle.updatePosition()
         this.balle.updateSpeedAfterWallCollision()
         this.balle.updateSpeedAfterRaquetteCollision(this.raquette)
+        this.balle.updateSpeedAfterBriqueWallCollision(this.briqueWall)
 
         this.raquette.draw()
         this.balle.draw()

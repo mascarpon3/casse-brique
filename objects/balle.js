@@ -32,6 +32,36 @@ export class Balle{
         }
     }
 
+    updateSpeedAfterBriqueWallCollision(briqueWall){
+        for (var brique of briqueWall.briques) {
+            var collition = this.updateSpeedAfterBriqueCollision(brique)
+            if(collition) {
+                break
+            }
+        }
+    }
+
+    updateSpeedAfterBriqueCollision(brique){
+        const yCondition = (Math.min(this.position.y - brique.position.y,  brique.height ) < brique.height)
+        const xLeftCondition = (Math.abs(this.position.x - brique.position.x) < 2)
+        const xRightCondition = (Math.abs(this.position.x - brique.position.x - brique.width) < 2)
+  
+        const xCondition = (Math.min(this.position.x - brique.position.x, brique.width) < brique.width)
+        const yTopCondition = (Math.abs(this.position.y - brique.position.y) < 2)
+        const yBotomCondition = (Math.abs(this.position.y - brique.position.y - brique.height) < 2)
+
+        if (yCondition & (xLeftCondition || xRightCondition)) {
+            console.log("x", brique.position.x)
+            this.speed.x = - this.speed.x
+            return true
+        }
+        if (xCondition & (yTopCondition || yBotomCondition)) {
+            console.log("y", brique.position.x)
+            this.speed.y = - this.speed.y
+            return true
+        }
+    }
+
 
     updateSpeedFromBallRatioPositioning(ballRatioPositioning) {
         if (Math.abs(ballRatioPositioning) < 0.6){
