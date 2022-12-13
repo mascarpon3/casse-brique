@@ -1,5 +1,6 @@
 import {Raquette} from "./objects/raquette.js"
 import {Balle} from "./objects/balle.js"
+import {BriqueWall} from "./objects/briques.js"
 
 
 class Game {
@@ -14,6 +15,7 @@ class Game {
         this.alive = true
         this.raquette = new Raquette(this.ctx);
         this.balle = new Balle(this.ctx);
+        this.briqueWall = new BriqueWall(this.ctx)
 
         this.update()
     }
@@ -23,13 +25,14 @@ class Game {
 
         this.raquette.updateDirection()
         this.raquette.updatePosition()
+
         this.balle.updatePosition()
         this.balle.updateSpeedAfterWallCollision()
         this.balle.updateSpeedAfterRaquetteCollision(this.raquette)
 
         this.raquette.draw()
         this.balle.draw()
-
+        this.briqueWall.draw()
         if (this.balle.isAlive()) {
             setTimeout(this.update, 5)
         } else {
