@@ -5,10 +5,10 @@ import {BriqueWall} from "./objects/briques.js"
 
 class Game {
     constructor(){
-        this.ctx = document.getElementById('terrain').getContext('2d');
+        this.ctx = document.getElementById('terrain').getContext('2d')
 
-        this.width=this.ctx.canvas.scrollWidth;
-        this.height=this.ctx.canvas.scrollHeight;
+        this.width=this.ctx.canvas.scrollWidth
+        this.height=this.ctx.canvas.scrollHeight
     }
 
     start = () => {
@@ -17,28 +17,40 @@ class Game {
         this.balle = new Balle(this.ctx)
         this.briqueWall = new BriqueWall(this.ctx)
 
-        this.update()
+        this.refresh()
     }
 
-    update = () => {
+    refresh = () => {
         this.ctx.clearRect(0, 0, this.width, this.height)
 
         this.raquette.updateDirection()
-        this.raquette.updatePosition()
 
-        this.balle.updatePosition()
-        this.balle.updateSpeedAfterWallCollision()
-        this.balle.updateSpeedAfterRaquetteCollision(this.raquette)
-        this.balle.updateSpeedAfterBriqueWallCollision(this.briqueWall)
+        this.updatePositions()
+        this.updateBalleSpeed()
+        this.draw()
 
-        this.raquette.draw()
-        this.balle.draw()
-        this.briqueWall.draw()
         if (this.balle.isAlive()) {
-            setTimeout(this.update, 5)
+            setTimeout(this.refresh, 5)
         } else {
             this.start()
         }
+    }
+
+    updatePositions(){
+        this.raquette.updatePosition()
+        this.balle.updatePosition()
+    }
+
+    updateBalleSpeed(){
+        this.balle.updateSpeedAfterWallCollision()
+        this.balle.updateSpeedAfterRaquetteCollision(this.raquette)
+        this.balle.updateSpeedAfterBriqueWallCollision(this.briqueWall)
+    }
+
+    draw(){
+        this.raquette.draw()
+        this.balle.draw()
+        this.briqueWall.draw()
     }
 }
 
